@@ -85,11 +85,19 @@ generate_code_maat_summary() {
 
 generate_line_count_report() {
     print_progress_message 'cloc: generating line count report - lines of code in each file (sloc) used as proxy for complexity'
-    cloc --include-lang=$includedLanguages --exclude-dir=$excludedDirectories --exclude-ext=$excludedFileExtensions $searchPath --by-file --csv --quiet --report-file=$slocFile >nul 2>&1
+    echo $includedLanguages
+    echo $excludedDirectories
+    echo $excludedFileExtensions
+    echo $searchPath
+    echo $slocFile
+
+    cloc --exclude-dir=$excludedDirectories --exclude-ext=$excludedFileExtensions --include-lang=$includedLanguages ./ --by-file --csv --report-file=$slocFile >nul 2>&1
 }
 
 generate_change_frequency_report() {
     print_progress_message 'code maat: generating change frequency report - find number of changes for each module to represent effort'
+    echo $evolutionFile
+    echo $changeFrequencyFile
     maat.bat -l $evolutionFile -c git -a revisions > $changeFrequencyFile
 }
 
@@ -108,6 +116,20 @@ copy_visualisation_file_to_destination() {
     cp $visualisationFile $visualisationPath$visualisationFile
 }
 
+change_directory_to_visualisation_file_destination() {
+    print_progress_message 'bash: changed directory to visualisation file directory'
+    cd $visualisationPath
+}
+
+start_web_server() {
+    print_progress_message 'python: starting local web server on port 8000'
+    python -m SimpleHTTPServer 8000
+}
+
+analysis_finished() {
+    print_progress_message 'bash: analysis complete'
+}
+
 clean_old_files
 (create_version_control_log)                & spinner $!
 (generate_code_maat_summary)                & spinner $!
@@ -117,5 +139,7 @@ clean_old_files
 (generate_visualisation_json)               & spinner $!
 (copy_visualisation_file_to_destination)    & spinner $!
 
-print_progress_message 'done'
+analysis_finished
+change_directory_to_visualisation_file_destination
+start_web_server
 
