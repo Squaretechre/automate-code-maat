@@ -37,8 +37,7 @@ File extensions to exclude in csv format
 
 
 Example:
-analyze.sh -p analysis -v /c/codemaat/analysis/ -s ./ -l cs,js -d node_modules -f csproj,css
-
+analyze.sh -p analysis -v /c/codemaat/analysis/ -s ./ -l C# -d node_modules -f csproj,css
 
 You can read more about Cloc's parameters at:
 https://www.npmjs.com/package/cloc
