@@ -4,6 +4,8 @@ searchPath='./'
 includedLanguages=''
 excludedDirectories=''
 excludedFileExtensions=''
+afterDate=''
+beforeDate=''
 
 while [ "$1" != "" ]; do
     case $1 in
@@ -24,6 +26,12 @@ while [ "$1" != "" ]; do
                                 ;;
         -ee | --excludeExt )    shift
                                 excludedFileExtensions=$1
+                                ;;
+        -ad | --afterDate )     shift
+                                afterDate=$1
+                                ;;                                
+        -bd | --beforeDate )    shift
+                                beforeDate=$1
                                 ;;
     esac
     shift
@@ -75,7 +83,7 @@ clean_old_files() {
 
 create_version_control_log() {
     print_progress_message 'git: creating version control log'
-    git log --pretty=format:'[%h] %an %ad %s' --date=short --numstat > $evolutionFile
+    git log --pretty=format:'[%h] %an %ad %s' --date=short --before=$beforeDate --after=$afterDate --numstat > $evolutionFile
 }
 
 generate_code_maat_summary() {

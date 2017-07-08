@@ -35,9 +35,15 @@ Directories to exclude from analysis in csv format
 -ee | --excludeExt
 File extensions to exclude in csv format
 
+-ad | --afterDate
+Include commit history from this date in the format yyyy-mm-dd
+
+-bd | --beforeDate
+Include commit history up until this date in the format yyyy-mm-dd
+
 
 Example:
-analyze.sh -fp analysis -vp /c/codemaat/analysis/ -sp ./ -il C#,JavaScript -ed node_modules,tests -ee csproj,css
+analyze.sh -fp analysis -vp /c/codemaat/analysis/ -sp ./ -il C# -ed node_modules,sitecore -ee csproj,css -ad 2016-01-01 -bd 2017-01-01
 
 You can read more about Cloc's parameters at:
 https://www.npmjs.com/package/cloc
