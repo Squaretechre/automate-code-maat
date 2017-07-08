@@ -42,6 +42,8 @@ visualisationFile=$prefix'visualisation.json'
 evolutionFile=$prefix'evolution.log'
 slocFile=$prefix'lines.csv'
 changeFrequencyFile=$prefix'frequency.csv'
+afterDateParam=$(if [ "$afterDate" == "" ]; then echo ""; else echo "--after=$afterDate"; fi)
+beforeDateParam=$(if [ "$beforeDate" == "" ]; then echo ""; else echo "--before=$beforeDate"; fi)
 
 spinner()
 {
@@ -83,7 +85,7 @@ clean_old_files() {
 
 create_version_control_log() {
     print_progress_message 'git: creating version control log'
-    git log --pretty=format:'[%h] %an %ad %s' --date=short --before=$beforeDate --after=$afterDate --numstat > $evolutionFile
+    git log --pretty=format:'[%h] %an %ad %s' --date=short $afterDateParam $beforeDateParam --numstat > $evolutionFile
 }
 
 generate_code_maat_summary() {
