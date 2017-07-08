@@ -43,7 +43,7 @@ Include commit history up until this date in the format yyyy-mm-dd
 
 
 Example:
-analyze.sh -fp analysis -vp /c/codemaat/analysis/ -sp ./ -il C# -ed node_modules,sitecore -ee csproj,css -ad 2016-01-01 -bd 2017-01-01
+analyze.sh -fp analysis -vp /c/codemaat/analysis/ -sp ./ -il C# -ed node_modules,tests -ee csproj,css -ad 2016-01-01 -bd 2017-01-01
 
 You can read more about Cloc's parameters at:
 https://www.npmjs.com/package/cloc
