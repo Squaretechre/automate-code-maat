@@ -27,7 +27,7 @@ Path to save the visualisation JSON file to
 Path to run the complexity analysis on using Cloc
 
 -il | --includeLang
-Languages to include in analysis in csv format
+Languages to include in analysis in csv format, see [Cloc docs](http://cloc.sourceforge.net/#Languages) for recognised languages.
 
 -ed | --excludeDir
 Directories to exclude from analysis in csv format
