@@ -17,27 +17,27 @@ The script was written to run on Windows so you'll need to tweak a few things fo
 
 ## Parameters
 
--p | --prefix
+-fp | --prefix
 Prefix to add to output files i.e. 'myorganisation_frequency.csv' - defaults to 'analysis'
 
--v | --vispath
+-vp | --vispath
 Path to save the visualisation JSON file to
 
--s | --searchpath
+-sp | --searchpath
 Path to run the complexity analysis on using Cloc
 
--l | --includeLang
+-il | --includeLang
 Languages to include in analysis in csv format
 
--d | --excludeDir
+-ed | --excludeDir
 Directories to exclude from analysis in csv format
 
--f | --excludeExt
+-ee | --excludeExt
 File extensions to exclude in csv format
 
 
 Example:
-analyze.sh -p analysis -v /c/codemaat/analysis/ -s ./ -l C# -d node_modules -f csproj,css
+analyze.sh -fp analysis -vp /c/codemaat/analysis/ -sp ./ -il C#,JavaScript -ed node_modules,tests -ee csproj,css
 
 You can read more about Cloc's parameters at:
 https://www.npmjs.com/package/cloc

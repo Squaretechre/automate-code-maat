@@ -7,22 +7,22 @@ excludedFileExtensions=''
 
 while [ "$1" != "" ]; do
     case $1 in
-        -p | --filePrefix )     shift
+        -fp | --filePrefix )     shift
                                 prefix=$1
                                 ;;
-        -v | --visPath )        shift
+        -vp | --visPath )        shift
                                 visualisationPath=$1
                                 ;;
-        -s | --searchPath )     shift
+        -sp | --searchPath )     shift
                                 searchPath=$1
                                 ;;
-        -l | --includeLang )   shift
+        -il | --includeLang )   shift
                                 includedLanguages=$1
                                 ;;
-        -d | --excludeDir )    shift
+        -ed | --excludeDir )    shift
                                 excludedDirectories=$1
                                 ;;
-        -f | --excludeExt )    shift
+        -ee | --excludeExt )    shift
                                 excludedFileExtensions=$1
                                 ;;
     esac
@@ -85,19 +85,11 @@ generate_code_maat_summary() {
 
 generate_line_count_report() {
     print_progress_message 'cloc: generating line count report - lines of code in each file (sloc) used as proxy for complexity'
-    echo $includedLanguages
-    echo $excludedDirectories
-    echo $excludedFileExtensions
-    echo $searchPath
-    echo $slocFile
-
     cloc --exclude-dir=$excludedDirectories --exclude-ext=$excludedFileExtensions --include-lang=$includedLanguages ./ --by-file --csv --report-file=$slocFile >nul 2>&1
 }
 
 generate_change_frequency_report() {
     print_progress_message 'code maat: generating change frequency report - find number of changes for each module to represent effort'
-    echo $evolutionFile
-    echo $changeFrequencyFile
     maat.bat -l $evolutionFile -c git -a revisions > $changeFrequencyFile
 }
 
