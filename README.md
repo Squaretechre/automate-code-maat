@@ -11,7 +11,7 @@ The script was written to run on Windows so you'll need to tweak a few things fo
 7. cd into the repo to run the analysis on
 8. Run **analyze.sh** using the parameters below
 9. cd to where your analysis was copied to, `C:\codemaat\analysis\` by default
-10. D3 will try to load a file called **analysis_visualisation.json** by default which is set in **index.html**, if you change the file prefix with the `-p` parameter, make sure to update this the filename in **index.html**
+10. D3 will try to load a file called **analysis_visualisation.json** by default which is set in **index.html**, if you change the file prefix with the `-fp` parameter, make sure to update this the filename in **index.html**
 11. Run a local server in that folder using Python for instance, > `python -m SimpleHTTPServer 8000`
 12. Hit [localhost:8000](http://localhost:8000) to see the D3 hot spot visualisation
 
